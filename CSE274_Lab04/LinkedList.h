@@ -91,40 +91,68 @@ LinkedList<T>::LinkedList()
 
 template <class T>
 LinkedList<T>::~LinkedList() {
+    // Get rid of all the normal nodes.
+    while (numItems > 0)
+    {
+        remove(0);
+    }
+    
+    // Get rid of the dummy node.
+    delete dummyNode;
+}
+
+template <class T>
+typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
+{
+    if (i == numItems)
+        return dummyNode;
+    else if (i > numItems)
+        throw std::string("Index is larger than number of items in find()");
+    else
+    {
+        Node* ret = dummyNode->next;
+        
+        while (i > 0)
+        {
+            ret = ret->next
+            i--;
+        }
+        
+        return ret;
+    }
+}
+
+template <class T>
+void LinkedList<T>::set(unsigned long i, T x)
+{
     //TODO
 }
 
 template <class T>
-typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i){
-    //TODO
-    return NULL;
-}
-
-template <class T>
-void LinkedList<T>::set(unsigned long i, T x){
+void LinkedList<T>::add(unsigned long i, T x)
+{
     //TODO
 }
 
 template <class T>
-void LinkedList<T>::add(unsigned long i, T x){
-    //TODO
+void LinkedList<T>::remove(unsigned long i)
+{
+    // TODO - Remove the node at address i, and shift everything down so there are no "empty spaces."
 }
 
 template <class T>
-void LinkedList<T>::remove(unsigned long i){
-    //TODO
+T LinkedList<T>::get(unsigned long i)
+{
+    Node* myNode = find(i);
+    if (myNode == dummyNode) // These are comparable because they are both pointers.
+        throw std::string("Index was too large in get()");
+    else
+        return myNode->data;
 }
 
 template <class T>
-T LinkedList<T>::get(unsigned long i){
-    //TODO -- The code that is here is a useless stub, you probably
-    // want to delete it
-    Node junkNode;
-    return junkNode.data; //This is unitialized data
-}
-
-template <class T>
-unsigned long LinkedList<T>::size(){
+unsigned long LinkedList<T>::size()
+{
     //TODO
     return 0;
 }
