@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>B7BF3313-3F1B-4B17-8A66-EA9002E86A05</string>
+	<string>0E610B6D-26F1-449E-96E5-9298F130F559</string>
 	<key>IDESourceControlProjectName</key>
-	<string>CSE274_Lab04</string>
+	<string>CSE274_Lab4</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>C82D92FB33C0B246F12E0C6E7BCDC56EEF3763B2</key>
 		<string>https://github.com/claybd/04_Linked_List_Lab.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CSE274_Lab04/CSE274_Lab04.xcodeproj</string>
+	<string>CSE274_Lab4/CSE274_Lab4.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>C82D92FB33C0B246F12E0C6E7BCDC56EEF3763B2</key>
