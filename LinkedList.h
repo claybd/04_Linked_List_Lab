@@ -86,6 +86,7 @@ LinkedList<T>::LinkedList()
     // (These next two statements are exactly the same)
     dummyNode->next = dummyNode;
     (*dummyNode).prev = dummyNode;
+    dummyNode->data = -1;
     
     numItems = 0;
 }
@@ -102,95 +103,142 @@ LinkedList<T>::~LinkedList() {
     delete dummyNode;
 }
 
+/*****************************************************************
+ Find the node at location i.  If the list does not contain at
+ least i+1 items, throw a string exception.
+ *****************************************************************/
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 {
-    Node* ret;
+    Node* node = dummyNode;
     
-    try
+    if (numItems < i+1)
+        throw std::string ("The list contains less items than the requested index.");
+    else
     {
-        if (i == numItems)
-            return dummyNode;
-        else if (i > numItems)
-            throw std::string("Index is larger than number of items in find()");
-        else
-        {
-            ret = dummyNode->next;
-        
-            while (i > 0)
-            {
-                ret = ret->next;
-                i--;
-            }
-        }
-    }
-    catch (std::string e)
-    {
-        std::cout << e << std::endl;
+        for (int t = 0; t < i+1; t++)
+            node = node->next;
     }
     
-    return ret;
+    return node;
 }
 
+/*****************************************************************
+ Set the value at index i to x.  If the list does not contain at
+ least i+1 items, throw a string exception.
+ *****************************************************************/
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x)
 {
-    find(i)->data = x;
+    if (numItems < i+1)
+        throw std::string ("The list contains less items than the requested index.");
+    else
+    {
+        Node* node = find(i);
+        node->data = x;
+    }
 }
 
-//Add a new item, x, at position i. All items that were originally
-// at position i or higher get moved forward 1 to make room.
-// If list does not contain at least i items, throw a string exception
+/*****************************************************************
+ Add a new item, x, at position i. All items that were originally
+ at position i or higher get moved forward 1 to make room. If list 
+ does not contain at least i items, throw a string exception.
+ *****************************************************************/
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x)
 {
-    unsigned long s = size();
+    unsigned long length = numItems;
     
-    if (i < s)
+    if (length >= i)
     {
-        std::cout << "String Exception, " << x << " not added at position " << i << std::endl;
-        return;
+        if (dummyNode->next == dummyNode)
+        {
+            Node* newNode = new Node;
+                
+            newNode->prev = dummyNode;
+            newNode->next = dummyNode;
+            newNode->data = x;
+            dummyNode->next = newNode;
+            dummyNode->prev = newNode;
+                
+            numItems++;
+        }
+        else
+        {
+            Node* newNode = new Node;
+            Node* holder = find(i-1);
+            
+            newNode->next = holder->next;
+            newNode->prev = holder;
+            newNode->data = x;
+            holder->prev = newNode->prev;
+            
+            holder = newNode->prev->prev;
+            holder->next = newNode;
+            
+            numItems++;
+        }
     }
-        
-    Node *addNode;
-    addNode = find(i)->prev;
-    addNode->data = x;
-    addNode->next = find(i);
-    addNode->prev = find(i)->prev;
-    find(i)->prev = addNode;
+    else
+        throw std::string ("The list contains less items than the requested index.");
 }
 
+/*****************************************************************
+ Remove the item at position i. All items that were originally at 
+ position i+1 or higher get moved backwards 1 to fill the gap. If 
+ the list does not contain at least i+1 items, throw a string
+ exception.
+ *****************************************************************/
 template <class T>
 void LinkedList<T>::remove(unsigned long i)
 {
-    find(i)->prev->next = find(i)->next;
-    find(i)->next->prev = find(i)->prev;
-    find(i)->data = NULL;
+    if (numItems < i+1)
+        throw std::string ("The list contains less items than the requested index.");
+    else
+    {
+        Node* removedNode = find(i);
+        Node* prevHolder = removedNode->prev;
+        Node* nextHolder = removedNode->next;
+            
+        prevHolder->next = removedNode->next;
+        nextHolder->prev = removedNode->prev;
+            
+        removedNode->data = NULL;
+        numItems--;
+    }
 }
 
+/*****************************************************************
+ Get the value at index i, and return it. If the list does not
+ contain at least i+1 items, throw a string exception.
+ *****************************************************************/
 template <class T>
 T LinkedList<T>::get(unsigned long i)
 {
-    Node* myNode = find(i);
-    if (myNode == dummyNode) // These are comparable because they are both pointers.
-        throw std::string("Index was too large in get()");
+    Node* holder = dummyNode;
+    
+    if (numItems < i+1)
+        throw std::string ("The list contains less items than the requested index.");
     else
-        return myNode->data;
+        holder = find(i);
+    
+    return holder->data;
 }
 
+/*****************************************************************
+Return the number of items currently in the List
+ *****************************************************************/
 template <class T>
 unsigned long LinkedList<T>::size()
 {
-    if (dummyNode->next == dummyNode)
-        return 0;
+    unsigned long size = 0;
+    Node* node = dummyNode->next;
     
-    int count = 0;
-    Node node = *dummyNode->next;
-    
-    while (node.data) {
-        count++;
-        node = *node.next;
+    while(node != dummyNode)
+    {
+        size++;
+        node = node->next;
     }
-    
-    return count;
+        
+    return size;
 }

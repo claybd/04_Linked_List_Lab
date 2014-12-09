@@ -22,6 +22,7 @@ void testBasicMethods(){
   testList.add(3,3);
   testList.add(4,4);
   testList.add(5,5);
+    
 
   if(testList.size() == 6){
     std::cout << "SUCCESS: 6 items added" << std::endl;
