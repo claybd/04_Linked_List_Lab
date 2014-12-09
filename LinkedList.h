@@ -1,4 +1,4 @@
-/* This program was written by Ben Clay.  It may be used without the author's consent for non-profit puproses only. */
+   /* This program was written by Ben Clay.  It may be used without the author's consent for non-profit puproses only. */
 
 #include "List.h"
 #include <iostream>
@@ -230,14 +230,5 @@ Return the number of items currently in the List
 template <class T>
 unsigned long LinkedList<T>::size()
 {
-    unsigned long size = 0;
-    Node* node = dummyNode->next;
-    
-    while(node != dummyNode)
-    {
-        size++;
-        node = node->next;
-    }
-        
-    return size;
+    return numItems;
 }
