@@ -1,6 +1,5 @@
-//DO NOT CHANGE THIS FILE
-//Author: Bo Brinkman
-//Date: 2013/07/11
+/* This program was written by Ben Clay.  It may be used without the author's consent for non-profit puproses only. */
+
 #include "List.h"
 #include <iostream>
 
