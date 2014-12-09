@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "02CC7B1019DB319700B9BC5E"
-               BuildableName = "CSE274_Lab4"
-               BlueprintName = "CSE274_Lab4"
-               ReferencedContainer = "container:CSE274_Lab4.xcodeproj">
+               BlueprintIdentifier = "028E831119F341EC00D3E406"
+               BuildableName = "Lab04_Final"
+               BlueprintName = "Lab04_Final"
+               ReferencedContainer = "container:Lab04_Final.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "02CC7B1019DB319700B9BC5E"
-            BuildableName = "CSE274_Lab4"
-            BlueprintName = "CSE274_Lab4"
-            ReferencedContainer = "container:CSE274_Lab4.xcodeproj">
+            BlueprintIdentifier = "028E831119F341EC00D3E406"
+            BuildableName = "Lab04_Final"
+            BlueprintName = "Lab04_Final"
+            ReferencedContainer = "container:Lab04_Final.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "02CC7B1019DB319700B9BC5E"
-            BuildableName = "CSE274_Lab4"
-            BlueprintName = "CSE274_Lab4"
-            ReferencedContainer = "container:CSE274_Lab4.xcodeproj">
+            BlueprintIdentifier = "028E831119F341EC00D3E406"
+            BuildableName = "Lab04_Final"
+            BlueprintName = "Lab04_Final"
+            ReferencedContainer = "container:Lab04_Final.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "02CC7B1019DB319700B9BC5E"
-            BuildableName = "CSE274_Lab4"
-            BlueprintName = "CSE274_Lab4"
-            ReferencedContainer = "container:CSE274_Lab4.xcodeproj">
+            BlueprintIdentifier = "028E831119F341EC00D3E406"
+            BuildableName = "Lab04_Final"
+            BlueprintName = "Lab04_Final"
+            ReferencedContainer = "container:Lab04_Final.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

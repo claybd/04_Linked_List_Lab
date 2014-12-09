@@ -2,6 +2,7 @@
 //Author: Bo Brinkman
 //Date: 2013/07/11
 #include "List.h"
+#include <iostream>
 
 template <class T>
 class LinkedList : public List <T>
@@ -104,40 +105,67 @@ LinkedList<T>::~LinkedList() {
 template <class T>
 typename LinkedList<T>::Node* LinkedList<T>::find(unsigned long i)
 {
-    if (i == numItems)
-        return dummyNode;
-    else if (i > numItems)
-        throw std::string("Index is larger than number of items in find()");
-    else
+    Node* ret;
+    
+    try
     {
-        Node* ret = dummyNode->next;
-        
-        while (i > 0)
+        if (i == numItems)
+            return dummyNode;
+        else if (i > numItems)
+            throw std::string("Index is larger than number of items in find()");
+        else
         {
-            ret = ret->next;
-            i--;
-        }
+            ret = dummyNode->next;
         
-        return ret;
+            while (i > 0)
+            {
+                ret = ret->next;
+                i--;
+            }
+        }
     }
+    catch (std::string e)
+    {
+        std::cout << e << std::endl;
+    }
+    
+    return ret;
 }
 
 template <class T>
 void LinkedList<T>::set(unsigned long i, T x)
 {
-    //TODO
+    find(i)->data = x;
 }
 
+//Add a new item, x, at position i. All items that were originally
+// at position i or higher get moved forward 1 to make room.
+// If list does not contain at least i items, throw a string exception
 template <class T>
 void LinkedList<T>::add(unsigned long i, T x)
 {
-    //TODO
+    unsigned long s = size();
+    
+    if (i < s)
+    {
+        std::cout << "String Exception, " << x << " not added at position " << i << std::endl;
+        return;
+    }
+        
+    Node *addNode;
+    addNode = find(i)->prev;
+    addNode->data = x;
+    addNode->next = find(i);
+    addNode->prev = find(i)->prev;
+    find(i)->prev = addNode;
 }
 
 template <class T>
 void LinkedList<T>::remove(unsigned long i)
 {
-    // TODO - Remove the node at address i, and shift everything down so there are no "empty spaces."
+    find(i)->prev->next = find(i)->next;
+    find(i)->next->prev = find(i)->prev;
+    find(i)->data = NULL;
 }
 
 template <class T>
@@ -153,6 +181,16 @@ T LinkedList<T>::get(unsigned long i)
 template <class T>
 unsigned long LinkedList<T>::size()
 {
-    //TODO
-    return 0;
+    if (dummyNode->next == dummyNode)
+        return 0;
+    
+    int count = 0;
+    Node node = *dummyNode->next;
+    
+    while (node.data) {
+        count++;
+        node = *node.next;
+    }
+    
+    return count;
 }
