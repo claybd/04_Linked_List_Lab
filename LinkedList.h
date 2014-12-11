@@ -171,7 +171,6 @@ void LinkedList<T>::add(unsigned long i, T x)
             newNode->prev = holder;
             newNode->data = x;
             holder->prev = newNode->prev;
-            
             holder = newNode->prev->prev;
             holder->next = newNode;
             
@@ -196,13 +195,13 @@ void LinkedList<T>::remove(unsigned long i)
     else
     {
         Node* removedNode = find(i);
-        Node* prevHolder = removedNode->prev;
-        Node* nextHolder = removedNode->next;
             
-        prevHolder->next = removedNode->next;
-        nextHolder->prev = removedNode->prev;
+        removedNode->prev->next = removedNode->next;
+        removedNode->next->prev = removedNode->prev;
             
         removedNode->data = NULL;
+        delete removedNode;
+        removedNode = nullptr;
         numItems--;
     }
 }
@@ -214,14 +213,14 @@ void LinkedList<T>::remove(unsigned long i)
 template <class T>
 T LinkedList<T>::get(unsigned long i)
 {
-    Node* holder = dummyNode;
+    Node holder = *dummyNode;
     
     if (numItems < i+1)
         throw std::string ("The list contains less items than the requested index.");
     else
-        holder = find(i);
+        holder = *find(i);
     
-    return holder->data;
+    return holder.data;
 }
 
 /*****************************************************************
